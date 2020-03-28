@@ -43,3 +43,22 @@ class Function:
             return dfdx.__derivative_at(x, curr_order+1, order, dx, mode)
 
         return self(x)
+
+    def derivative(self, order=1, dx=10e-7, mode='central'):
+        '''
+            Returns the derivative function of order <order>
+            with  <dx> difference using <mode> approaching
+        '''
+
+        if order <= 0:
+            raise InvalidOrderException('Order must be > 0')
+
+        return self.__derivative(order=order, dx=dx, mode=mode)
+
+    def __derivative(self, curr_order=1, order=1, dx=10e-7, mode='central'):
+
+        if curr_order <= order:
+            dfdx = self.__choose_mode(dx, mode)
+            return dfdx.__derivative(curr_order+1, order, dx, mode)
+
+        return self

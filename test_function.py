@@ -7,5 +7,9 @@ if __name__ == '__main__':
 
     x = 1
     print(f(x))
-    print(f.derivative(x))
-    print(f.derivative(x, 2))
+    print(f.derivative_at(x))
+    print(f.derivative_at(x, 2))
+
+    print('')
+    print(f.derivative()(x))
+    print(f.derivative(2)(x))
