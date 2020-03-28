@@ -9,7 +9,12 @@ class Function:
     def __call__(self, x):
         return self.__func(x)
 
-    def derivative(self, x, order=1, dx=10e-7, mode='central'):
+    def derivative_at(self, x, order=1, dx=10e-7, mode='central'):
+        '''
+            Return the value of the derivative of order <order>
+            at <x> with  <dx> difference using <mode> approaching
+        '''
+
         if order <= 0:
             raise InvalidOrderException('Order must be > 0')
         
@@ -18,7 +23,7 @@ class Function:
 
         return self.__derivative(x,order=order, dx=dx, mode=mode)
     
-    def __derivative(self, _x, curr_order=1, order=1, dx=10.e-7, mode='central'):
+    def __derivative_at(self, _x, curr_order=1, order=1, dx=10.e-7, mode='central'):
 
         if curr_order <= order:
             f = self
