@@ -1,6 +1,5 @@
 from math import sin
 from generic_newton_cotes import generic_newton_cotes
-import sympy as sp
 
 
 def newton_cotes(p, func, a, b, closed_interval=True):
@@ -28,8 +27,6 @@ def newton_cotes(p, func, a, b, closed_interval=True):
 
 
 if __name__ == '__main__':
-
-    sp.init_printing()
 
     for i in range(1, 10, 1):
         
