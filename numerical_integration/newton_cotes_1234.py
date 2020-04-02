@@ -25,6 +25,28 @@ def newton_cotes(p, func, a, b, closed_interval=True):
         symbols = {s: g(int(str(s).split('_')[1])) for s in formula.free_symbols}
         return formula.subs(symbols)
 
+def newton_cotes(p, func, a, b, closed_interval=False):
+    '''
+        Aproximate <func> using a polynomial of degree <p>
+        to integrate [<a>, <b>] if <closed_interval> is false,
+        else (<a>, <b>)
+    '''
+    h = (b - a) / (p+2)
+    x = lambda s: a + h + s*h
+    g = lambda s: func(x(s))
+
+    if p == 1:
+        return 3*h/2 * (g(0) + g(1))
+    elif p == 2:
+        return 4*h/3 * (2*g(0) - g(1) + 2*g(2))
+    elif p == 3:
+        return 5*h/24 * (11*g(0) + g(1) + g(2) + 11*g(3))
+    elif p == 4:
+        return 6*h/20 * (11*g(0) - 14*g(1) + 26*g(2) -14*g(3) + 11*g(4))
+    elif p > 4:
+        formula = generic_newton_cotes(p, a, b)
+        symbols = {s: g(int(str(s).split('_')[1])) for s in formula.free_symbols}
+        return formula.subs(symbols)
 
 if __name__ == '__main__':
 
