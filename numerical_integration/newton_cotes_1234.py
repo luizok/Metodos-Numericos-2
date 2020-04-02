@@ -8,8 +8,8 @@ def newton_cotes(p, func, a, b, closed_interval=True):
         to integrate [<a>, <b>] if <closed_interval> is true,
         else (<a>, <b>)
     '''
-    h = (b - a) / p
-    x = lambda s: a + s * (h + int(not closed_interval))
+    h = (b - a) / (p + 2*int(not closed_interval))
+    x = lambda s: a + h * (s + int(not closed_interval))
     g = lambda s: func(x(s))
 
     if p == 1:
@@ -21,7 +21,7 @@ def newton_cotes(p, func, a, b, closed_interval=True):
     elif p == 4:
         return 2*h/45 * (7*g(0) + 32*g(1) + 12*g(2) + 32*g(3) + 7*g(4))
     elif p > 4:
-        formula = generic_newton_cotes(p, a, b)
+        formula = generic_newton_cotes(p, a, b, closed_interval)
         symbols = {s: g(int(str(s).split('_')[1])) for s in formula.free_symbols}
         return formula.subs(symbols)
 

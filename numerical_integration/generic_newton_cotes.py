@@ -28,15 +28,15 @@ def delta_r_iter(k, i, x=0):
     return acc
 
 
-def generic_newton_cotes(p, a, b):
+def generic_newton_cotes(p, a, b, closed_interval=True):
 
     s = sp.Symbol('s')
-    h = (b - a) / p
+    h = (b - a) / (p + 2*int(not closed_interval))
     formula = 0
     for k in range(p+1):
         formula += combination(s, k) * delta_r_iter(k, 0)
 
-    integral = sp.integrate(formula, (s, 0, p))
+    integral = sp.integrate(formula, (s, int(closed_interval)-1, p+int(not closed_interval)))
     integral = h * integral
 
     return integral
