@@ -37,17 +37,30 @@ def newton_cotes(p, func, a, b, closed_interval=True):
         return formula.subs(symbols)
 
 
+    
 if __name__ == '__main__':
+    
+    prev = 100
+    current = 0
+    tolerance = 0.000001
 
     for i in range(1, 10, 1):
-        
+
         a, b = 0, 1
-        print('grau {} closed = {}'.format(
+        prev = current
+        current = newton_cotes(i, lambda x: (sin(2*x) + 4*x**2 + 3*x)**2, a, b, True)
+        
+        print('grau {} aberto = {}'.format(
             i, newton_cotes(i, lambda x: (sin(2*x) + 4*x**2 + 3*x)**2, a, b, True)
         ))
-        print('grau {}  open  = {}'.format(
+        print('grau {}  fechado  = {}'.format(
             i, newton_cotes(i, lambda x: (sin(2*x) + 4*x**2 + 3*x)**2, a, b, False)
         ))
         print('')
-
         
+        print('erro absoluto: ',abs(prev-current))
+
+        if(abs(prev-current) < tolerance):
+            print('tolerancia atingida')
+            print('iterações necessárias: ',i)
+            break
