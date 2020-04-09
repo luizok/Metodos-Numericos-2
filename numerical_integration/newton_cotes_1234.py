@@ -47,8 +47,6 @@ if __name__ == '__main__':
     for i in range(1, 10, 1):
 
         a, b = 0, 1
-        prev = current
-        current = newton_cotes(i, lambda x: (sin(2*x) + 4*x**2 + 3*x)**2, a, b, True)
         
         print('grau {} aberto = {}'.format(
             i, newton_cotes(i, lambda x: (sin(2*x) + 4*x**2 + 3*x)**2, a, b, True)
@@ -57,10 +55,3 @@ if __name__ == '__main__':
             i, newton_cotes(i, lambda x: (sin(2*x) + 4*x**2 + 3*x)**2, a, b, False)
         ))
         print('')
-        
-        print('erro absoluto: ',abs(prev-current))
-
-        if(abs(prev-current) < tolerance):
-            print('tolerancia atingida')
-            print('iterações necessárias: ',i)
-            break
