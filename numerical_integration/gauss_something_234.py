@@ -59,20 +59,25 @@ def gauss_chebyshev(n, func):
 
     return sum(func(x[i]) * w[i] for i in range(n))
 
+
 if __name__ == '__main__':
 
     print(60 * '#')
     print('GAUSS-HERMITE \int_{-oo}^{+oo} e^{-x^{2}}f(x)dx, f(x) = 1')
-    print('valor esperado: 1.7724538509055')
+    print('valor esperado: 1.7724538509055\n')
+    for i in range(2, 5, 1):
+        print('n = {}, valor aporx.: {}'.format(i, gauss_hermite(i, lambda x: 1)))
+    print('')
+
     print(60 * '#')
     print('GAUSS-LAGUERRE \int_{0}^{+oo} e^{-x}f(x)dx, f(x) = 1')
-    print('valor esperado: 1.0')
+    print('valor esperado: 1.0\n')
+    for i in range(2, 5, 1):
+        print('n = {}, valor aporx.: {}'.format(i, gauss_laguerre(i, lambda x: 1)))
+    print('')
+
     print(60 * '#')
     print('GAUSS-CHEBYSHEV \int_{-1}^{+1} 1/sqrt{1-x^{2}}f(x)dx, f(x) = 1')
-    print('valor esperado: pi')
-    print(60 * '#')
-
+    print('valor esperado: pi\n')
     for i in range(2, 5, 1):
-        print('')
-        print('n = ' + str(i))
-        print('valor aprox. = {}'.format(gauss_chebyshev(i, lambda x: 1)))
+        print('n = {}, valor aporx.: {}'.format(i, gauss_chebyshev(i, lambda x: 1)))
