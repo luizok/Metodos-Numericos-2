@@ -80,6 +80,5 @@ singularity_newton_cotes_double(function,-2,0)
 # In[100]:
 
 
-print(pi/2) #o resultado era pra ter sido esse, acho que tem que 
-            #mudar o valor de c ou o negócio é o newton-cotes, mas pelo menos tá perto do valor certo
+print(pi/2) 
 
