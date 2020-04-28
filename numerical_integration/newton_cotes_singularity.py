@@ -10,7 +10,7 @@ import numpy as np
 def singularity_newton_cotes_double(function, a, b):
     
     erro = np.Infinity
-    Iv = 0
+    r0 = 0
     c = 0
     error = 0.000001
     
@@ -24,13 +24,13 @@ def singularity_newton_cotes_double(function, a, b):
             c += 0.5
 
             r1 = newton_cotes_partition(3,new_function, -c, c, True)
-            erro = abs((r1 - Iv)/r1)
-            Iv = r1
+            erro = abs((r1 - r0)/r1)
+            r0 = r1
 
     except:
-        return Iv
+        return r0
     
-    return Iv
+    return r0
 
 
 
