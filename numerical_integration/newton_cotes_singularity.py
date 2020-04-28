@@ -21,7 +21,7 @@ def singularity_newton_cotes_double(function, a, b):
     try:
         while(erro > error):
 
-            c += 0.5
+            c += 2.66
 
             r1 = newton_cotes_partition(3,new_function, -c, c, True)
             erro = abs((r1 - r0)/r1)
