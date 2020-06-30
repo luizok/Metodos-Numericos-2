@@ -9,7 +9,7 @@ epsilon = 0.000001
 
 resp1 = metodo_potencia(A, v0, epsilon)
 resp2 = metodo_inverso(A, v0, epsilon)
-resp3 = metodo_potencia_deslocamento(A, 1, v0, epsilon)
+resp3 = metodo_potencia_deslocamento(A, 0, v0, epsilon)
 
 
 print('-----------------------------------------------------------')
