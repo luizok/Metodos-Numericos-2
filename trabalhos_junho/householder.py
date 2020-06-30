@@ -17,7 +17,8 @@ def householder_on_ith_column(prev_ith_col, i, debug=False):
     w_line = np.zeros(n)
     w[i+1:] = prev_ith_col[i+1:]
 
-    w_line[i+1] = np.linalg.norm(w)
+    # Estava tendo problemas com sinal, encontrei esse termo extra no wkipedia
+    w_line[i+1] = - np.sign(w[i+1]) * np.linalg.norm(w)
 
     M = w - w_line
     m = (1./np.linalg.norm(M) * M).reshape(-1, 1)
