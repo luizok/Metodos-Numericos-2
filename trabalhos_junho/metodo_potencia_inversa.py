@@ -4,7 +4,6 @@ import scipy.linalg as splalg
 def metodo_inverso(A, x, epsilon):
     
     LUP = splalg.lu_factor(A, overwrite_a = True)
-    n = A.shape[0]
     splalg.lu_solve(LUP, x, overwrite_b=True )
     l_old = 0
     lmin = 1./np.linalg.norm(x)
