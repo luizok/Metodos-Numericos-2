@@ -34,7 +34,6 @@ def gauss_legendre_partition(p, func, a, b):
     x = lambda alpha: 1/2.*(a + b - (b - a)*alpha)
     fx = lambda alpha: func(x(alpha))
 
-    # print([fx(-sqrt(3/5)), fx(0), fx(sqrt(3/5))])
     if p == 2:
         return (b - a) / 2 * (1*fx(-sqrt(1/3)) + 1*fx(sqrt(1/3)))
     elif p == 3:

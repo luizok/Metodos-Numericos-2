@@ -4,37 +4,28 @@
 # In[ ]:
 
 
-from math import pi, tanh, cosh, sinh, inf, sqrt
+from math import pi, tanh, cosh, sinh, sqrt
 import numpy as np
 
-def singularity_newton_cotes_double(function, a, b):
+
+def singularity_newton_cotes_single(function, a, b, c):
+
     
-    erro = np.Infinity
-    r0 = 0
-    c = 0
-    error = 0.000001
+    x = lambda s: ((a+b)/2) + ((b-a)/2)*tanh(s)
+    dxs = lambda s: ((b-a)/2)*(1./cosh(s)**2)
+    new_function = lambda s: function(x(s))*dxs(s)
+
+    return newton_cotes_partition(3,new_function, -c, c, True)
+
+
+def singularity_newton_cotes_double(function, a, b, c):
     
     x = lambda s: ((a+b)/2) + ((b-a)/2)*tanh((pi/2)*(sinh(s)))
     dxs = lambda s: ((b-a)/2)*(pi/2)*((cosh(s))/(cosh((pi/2)*sinh(s)))**2)
     new_function = lambda s: function(x(s))*dxs(s)
-                                   
-    try:
-        while(erro > error):
 
-            c += 2.66
+    return newton_cotes_partition(3,new_function, -c, c, True)     
 
-            r1 = newton_cotes_partition(3,new_function, -c, c, True)
-            erro = abs((r1 - r0)/r1)
-            r0 = r1
-
-    except:
-        return r0
-    
-    return r0
-
-
-
-# In[1]:
 
 
 def newton_cotes_partition(p, func, a, b, closed_interval=True):
@@ -74,12 +65,18 @@ def function(x):
     
     return 1/(sqrt(4-x**2))
 
-singularity_newton_cotes_double(function,-2,0)
 
+test_1 = lambda x: 1/x**(2/3)
 
-# In[100]:
+print('TEST_1')
+print('SIMPLES  = ' + str(singularity_newton_cotes_single(test_1,0,1, 5)))
+print('DUPLA    = ' + str(singularity_newton_cotes_double(test_1,0,1, 2)))
+print('ESPERADO = ' + str(3))
+print('\n')
 
-
-print(pi/2) #o resultado era pra ter sido esse, acho que tem que 
+print('TEST_2')
+print('SIMPLES  = ' + str(singularity_newton_cotes_single(function,-2,0, 3.5)))
+print('DUPLA    = ' + str(singularity_newton_cotes_double(function,-2,0, 2.66)))
+print('ESPERADO = ' + str(pi/2)) #o resultado era pra ter sido esse, acho que tem que
             #mudar o valor de c ou algo do tipo, mas pelo menos tá perto do valor certo
 
