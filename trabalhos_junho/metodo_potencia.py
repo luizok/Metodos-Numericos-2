@@ -9,7 +9,7 @@ def metodo_potencia(A, v, epsilon):
 
 
     ev = autovalor(A, v)
-    print(v)
+    # print(v)
 
     while True:
         Av = A.dot(v)
