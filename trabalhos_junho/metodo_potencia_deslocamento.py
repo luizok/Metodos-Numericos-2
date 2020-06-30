@@ -2,7 +2,7 @@ import scipy
 import numpy as np
 import scipy.linalg as splalg
 
-import metodo_inverso
+from metodo_potencia_inversa import metodo_inverso
 
 def metodo_potencia_deslocamento(A, u, x, epsilon):
   
